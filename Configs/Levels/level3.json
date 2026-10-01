@@ -1,0 +1,25 @@
+{
+    "duration": 5,
+    "steps":10,
+    "step_duration":5,
+    "step_configs":[
+        {
+            "start_step":1,
+            "end_step":1,
+            "step_duration":0
+        },
+        {
+            "start_step":2,
+            "end_step":10,
+            "step_duration":1
+        }
+    ],
+    "enemies": [
+        {
+            "name":"enemy01",
+            "count": 1,
+            "start_spawn_step":1,
+            "end_spawn_step":10
+        }
+    ]
+}

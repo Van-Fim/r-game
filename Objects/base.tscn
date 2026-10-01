@@ -1,0 +1,110 @@
+[gd_scene load_steps=11 format=3 uid="uid://br2kvfko27het"]
+
+[ext_resource type="Texture2D" uid="uid://ddwbuy7ioov4f" path="res://Sprites/Base/Base01/core01.png" id="1_51irl"]
+[ext_resource type="Texture2D" uid="uid://b5v0janh2si3v" path="res://Sprites/Base/Base01/ring01.png" id="2_ouonw"]
+[ext_resource type="Texture2D" uid="uid://70kpx0r4xodu" path="res://Sprites/Base/Base01/ring02.png" id="3_lobr0"]
+
+[sub_resource type="Animation" id="Animation_8t5iv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_yp48q"]
+resource_name = "spin"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 3.1415927]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3bdrj"]
+_data = {
+&"RESET": SubResource("Animation_8t5iv"),
+&"spin": SubResource("Animation_yp48q")
+}
+
+[sub_resource type="Animation" id="Animation_3bdrj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ubbiv"]
+resource_name = "spin2"
+length = 12.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 12),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -3.141592653589793]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6yy46"]
+_data = {
+&"RESET": SubResource("Animation_3bdrj"),
+&"spin": SubResource("Animation_ubbiv")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_51irl"]
+radius = 608.3198
+
+[node name="Base" type="Area2D"]
+
+[node name="Core" type="Sprite2D" parent="."]
+texture = ExtResource("1_51irl")
+
+[node name="Ring1" type="Sprite2D" parent="."]
+texture = ExtResource("2_ouonw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ring1"]
+libraries = {
+&"": SubResource("AnimationLibrary_3bdrj")
+}
+autoplay = "spin"
+
+[node name="Ring2" type="Sprite2D" parent="."]
+texture = ExtResource("3_lobr0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ring2"]
+libraries = {
+&"": SubResource("AnimationLibrary_6yy46")
+}
+autoplay = "spin"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_51irl")
