@@ -77,7 +77,7 @@ func read_config(file_path):
 func spawn_enemy(enemy_name:String):
 	var enemy:Node2D = load("res://Objects/Enemies/"+ enemy_name +".tscn").instantiate()
 	add_child(enemy)
-	var radius = 10000
+	var radius = 15000
 	var angle = randf() * 2 * PI
 	enemy.position = Vector2(radius * cos(angle), radius * sin(angle))
 	enemy.look_at(GameManager.base.global_position)

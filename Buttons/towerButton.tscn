@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dn4leba5fwia3"]
+
+[ext_resource type="Texture2D" uid="uid://uiklyi27e1f0" path="res://Sprites/Tower/icon.png" id="1_c47lk"]
+[ext_resource type="Script" uid="uid://bs36igosu4oqr" path="res://Scripts/tower_button.gd" id="2_nac3a"]
+
+[node name="Button" type="Button"]
+icon = ExtResource("1_c47lk")
+script = ExtResource("2_nac3a")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

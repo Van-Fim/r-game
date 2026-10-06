@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://74abt4d1s0iv"]
+[gd_scene load_steps=9 format=3 uid="uid://74abt4d1s0iv"]
 
+[ext_resource type="Script" uid="uid://brrqo5hky20y0" path="res://Scripts/tower.gd" id="1_wkhmt"]
 [ext_resource type="Texture2D" uid="uid://cbsahx8w4hn4b" path="res://Sprites/Tower/core01.png" id="1_xughr"]
 [ext_resource type="Texture2D" uid="uid://dsk0ryrqfjwlc" path="res://Sprites/Tower/ring01.png" id="2_dyred"]
+[ext_resource type="Texture2D" uid="uid://cgdw6840d05lp" path="res://Sprites/tower_range.png" id="4_mws7f"]
 
 [sub_resource type="Animation" id="Animation_8t5iv"]
 length = 0.001
@@ -41,7 +43,17 @@ _data = {
 &"spin": SubResource("Animation_yp48q")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_mws7f"]
+radius = 181.13531
+
 [node name="Tower" type="Area2D"]
+script = ExtResource("1_wkhmt")
+
+[node name="ANIM01" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Ring1")
+libraries = {
+&"": SubResource("AnimationLibrary_3bdrj")
+}
 
 [node name="Core" type="Sprite2D" parent="."]
 texture = ExtResource("1_xughr")
@@ -49,8 +61,8 @@ texture = ExtResource("1_xughr")
 [node name="Ring1" type="Sprite2D" parent="."]
 texture = ExtResource("2_dyred")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Ring1"]
-libraries = {
-&"": SubResource("AnimationLibrary_3bdrj")
-}
-autoplay = "spin"
+[node name="tower_range" type="Sprite2D" parent="."]
+texture = ExtResource("4_mws7f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mws7f")
