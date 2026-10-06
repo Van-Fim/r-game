@@ -13,7 +13,14 @@ func _ready() -> void:
 	animationPlayer = get_node("ANIM01")
 
 func init():
+	recolor(Color(1,1,1,1))
 	animationPlayer.play("spin")
+
+func recolor(newColor:Color):
+	for sp:Sprite2D in tower_sprites:
+		if sp.name == "tower_range":
+			newColor.a = newColor.a * 0.03
+		sp.modulate = newColor
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -22,10 +22,19 @@ func start_building(tower_name: String):
 
 func _process(delta):
 	if current_ghost_tower:
-		# Привязываем позицию объекта к позиции мыши в мире
 		var mouse_pos = get_viewport().get_mouse_position()
+		var world_pos = get_canvas_transform().affine_inverse() * mouse_pos
+		
+		# Привязка к сетке 64x64
+		var snapped_x = round(world_pos.x / 64.0) * 64.0
+		var snapped_y = round(world_pos.y / 64.0) * 64.0
 		# Если игра 2D, конвертируем экранные координаты в мировые
-		current_ghost_tower.global_position = get_canvas_transform().affine_inverse() * mouse_pos
+		current_ghost_tower.global_position = Vector2(snapped_x, snapped_y)
+		var overlapping_areas = current_ghost_tower.get_overlapping_areas()
+		if overlapping_areas.size() > 0:
+			current_ghost_tower.recolor(Color(1,0,0,0.35))
+		else:
+			current_ghost_tower.recolor(Color(1,1,1,0.35))
 
 func place_tower():
 	if current_ghost_tower:

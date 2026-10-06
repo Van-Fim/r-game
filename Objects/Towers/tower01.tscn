@@ -44,7 +44,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mws7f"]
-radius = 181.13531
+radius = 216.00232
 
 [node name="Tower" type="Area2D"]
 script = ExtResource("1_wkhmt")
