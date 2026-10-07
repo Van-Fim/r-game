@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://74abt4d1s0iv"]
+[gd_scene load_steps=11 format=3 uid="uid://74abt4d1s0iv"]
 
 [ext_resource type="Script" uid="uid://brrqo5hky20y0" path="res://Scripts/tower.gd" id="1_wkhmt"]
 [ext_resource type="Texture2D" uid="uid://cbsahx8w4hn4b" path="res://Sprites/Tower/core01.png" id="1_xughr"]
 [ext_resource type="Texture2D" uid="uid://dsk0ryrqfjwlc" path="res://Sprites/Tower/ring01.png" id="2_dyred"]
 [ext_resource type="Texture2D" uid="uid://cgdw6840d05lp" path="res://Sprites/tower_range.png" id="4_mws7f"]
+[ext_resource type="Texture2D" uid="uid://d4bivgjrmq1tu" path="res://Sprites/Tower/turret01.png" id="5_2jr74"]
 
 [sub_resource type="Animation" id="Animation_8t5iv"]
 length = 0.001
@@ -46,8 +47,16 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_mws7f"]
 radius = 216.00232
 
-[node name="Tower" type="Area2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_2jr74"]
+radius = 1206.269
+
+[node name="Tower" type="Area2D" node_paths=PackedStringArray("turret_sprite", "tower_range", "detection_area", "detection_shape")]
 script = ExtResource("1_wkhmt")
+projectileName = "projectile01"
+turret_sprite = NodePath("turret")
+tower_range = NodePath("tower_range")
+detection_area = NodePath("detection_range")
+detection_shape = NodePath("detection_range/CollisionShape2D")
 
 [node name="ANIM01" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Ring1")
@@ -61,8 +70,18 @@ texture = ExtResource("1_xughr")
 [node name="Ring1" type="Sprite2D" parent="."]
 texture = ExtResource("2_dyred")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mws7f")
+
 [node name="tower_range" type="Sprite2D" parent="."]
 texture = ExtResource("4_mws7f")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_mws7f")
+[node name="turret" type="Sprite2D" parent="."]
+texture = ExtResource("5_2jr74")
+
+[node name="detection_range" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_range"]
+shape = SubResource("CircleShape2D_2jr74")

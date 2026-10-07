@@ -7,7 +7,9 @@
 radius = 62.0
 height = 124.0
 
-[node name="Enemy" type="Area2D"]
+[node name="Enemy" type="Area2D" groups=["enemies"]]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_dnm5c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
