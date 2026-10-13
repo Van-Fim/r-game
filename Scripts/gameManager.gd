@@ -2,7 +2,9 @@ extends Node
 var base:Node2D
 var camera:Camera2D
 var timer:Label
+var money = 6000
 signal enemy_killed_event(node)
+signal enemy_take_damage_event(node, damage)
 signal all_enemies_are_killed()
 func _ready():
 	var main_node = get_tree().current_scene

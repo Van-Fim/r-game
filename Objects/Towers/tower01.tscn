@@ -57,6 +57,7 @@ turret_sprite = NodePath("turret")
 tower_range = NodePath("tower_range")
 detection_area = NodePath("detection_range")
 detection_shape = NodePath("detection_range/CollisionShape2D")
+fire_rate = 0.3
 
 [node name="ANIM01" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Ring1")
